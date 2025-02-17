@@ -42,8 +42,29 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
+<script>const countdownDate = new Date("February 28, 2025 00:00:00").getTime();
+
+const countdownFunction = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days < 10 ? `0${days}` : days;
+  document.getElementById("hours").innerText = hours < 10 ? `0${hours}` : hours;
+  document.getElementById("minutes").innerText = minutes < 10 ? `0${minutes}` : minutes;
+  document.getElementById("seconds").innerText = seconds < 10 ? `0${seconds}` : seconds;
+
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.querySelector(".countdown").innerHTML = "<h2>We're Back!</h2>";
+  }
+}, 1000);</script>
 <style>
-body {
+  body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
@@ -74,7 +95,6 @@ p {
   margin-bottom: 30px;
 }
 
-/* Countdown Timer */
 .countdown {
   display: flex;
   justify-content: center;
@@ -101,7 +121,6 @@ p {
   margin-top: 5px;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   justify-content: center;
@@ -117,28 +136,3 @@ p {
 .social-icon:hover {
   color: #2575fc;
 }</style>
-<script>// Set the date and time for the end of maintenance
-const countdownDate = new Date("February 28, 2025 00:00:00").getTime();
-
-const countdownFunction = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = countdownDate - now;
-
-  // Time calculations
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result
-  document.getElementById("days").innerText = days < 10 ? `0${days}` : days;
-  document.getElementById("hours").innerText = hours < 10 ? `0${hours}` : hours;
-  document.getElementById("minutes").innerText = minutes < 10 ? `0${minutes}` : minutes;
-  document.getElementById("seconds").innerText = seconds < 10 ? `0${seconds}` : seconds;
-
-  // If the countdown is over, display a message
-  if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.querySelector(".countdown").innerHTML = "<h2>We're Back!</h2>";
-  }
-}, 1000);</script>
